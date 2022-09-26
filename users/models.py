@@ -49,6 +49,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     mobile = models.CharField(max_length=11, unique=True)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
+    balance = models.IntegerField(default=0)
 
     objects = UserManager()
 
