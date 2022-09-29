@@ -14,6 +14,33 @@ class OrderView(APIView):
     def post(self, request):
         """
             Register A New Order
+
+            POST ~ /auth/order/register
+            User Input Schema
+            {
+                "address": "Client's Address",
+                "description": "Client's Description"
+            }
+
+            Response Schema
+            status 200
+            {
+                "id": int,
+                "client": int
+                "address": "Client's Address",
+                "description": "Client's Description",
+                "client_score": 0,
+                "expert_score": 0,
+                "order_price": 0,
+                "is_arrived": false,
+                "status": 0,
+                "comission": 0,
+                "tax": 0,
+                "payment": "CR",
+                "register_time": "2022-09-29T05:12:20.629865Z",
+                "finish_time": "2022-09-29T05:12:20.629865Z",
+            }
+
         """
         init_data = {
             "client": request.user.id,

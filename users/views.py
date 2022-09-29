@@ -28,6 +28,34 @@ class UserRegister(APIView):
     def post(self, request):
         """
             Create New User by POST Request
+
+            POST ~ /auth/register
+            User Input Schema
+            {
+                "mobile": "09123456789",
+                "password": "123456",
+                "confirm_password": "123456",
+                "first_name": "نام",
+                "last_name": "نام خانوادگی"
+            }
+
+            Response Schema
+            status 201
+            {
+                "user": {
+                    "id": int,
+                    "last_login": null,
+                    "is_superuser": false,
+                    "first_name": "نام",
+                    "last_name": "نام خانوادگی",
+                    "mobile": "09123456789",
+                    "is_active": true,
+                    "is_staff": false,
+                    "balance": 0,
+                    "groups": [],
+                    "user_permissions": []
+                }
+            }
         """
         serialized_user = serializers.UserRegisterSerializer(data=request.data)
 
@@ -72,6 +100,24 @@ class UserProfile(APIView):
     def get(self, request):
         """
             Retrieve User Profile GET Request
+
+            GET ~ /auth/profile
+
+            Response Schema
+            status 200
+            {
+                "id": int,
+                "last_login": null,
+                "is_superuser": false,
+                "first_name": "نام",
+                "last_name": "نام خانوادگی",
+                "mobile": "09123456789",
+                "is_active": true,
+                "is_staff": false,
+                "balance": 0,
+                "groups": [],
+                "user_permissions": []
+            }
         """
         JWT = request.headers["Authorization"].split(" ")[-1]
         if not JWT:
